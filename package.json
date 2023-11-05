@@ -1,7 +1,7 @@
 {
   "name": "shop-hard",
   "version": "0.1.0",
-  "homepage": "https://bujkrys3.github.io",
+  "homepage": "https://bujkrys3.github.io/shop-hard",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.2",
