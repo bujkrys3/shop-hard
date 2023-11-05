@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/shop-hard/static/css/main.42b217b5.css",
+    "main.js": "/shop-hard/static/js/main.115b2db7.js",
+    "index.html": "/shop-hard/index.html",
+    "main.42b217b5.css.map": "/shop-hard/static/css/main.42b217b5.css.map",
+    "main.115b2db7.js.map": "/shop-hard/static/js/main.115b2db7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.42b217b5.css",
+    "static/js/main.115b2db7.js"
+  ]
+}
