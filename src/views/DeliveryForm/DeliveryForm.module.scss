@@ -1,0 +1,42 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 120px auto 0;
+
+  .delivery {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0 0;
+
+    &__input {
+      display: flex;
+      label {
+        width: 140px;
+        text-transform: uppercase;
+      }
+      input {
+        width: 200px;
+        height: auto;
+      }
+      textarea {
+        width: 200px;
+        height: 100px;
+        word-wrap: break-word;
+        resize: none;
+      }
+    }
+    &__error {
+      color: red;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    margin: 1rem 0 0;
+
+    .button {
+      margin: 1rem 1rem 0;
+    }
+  }
+}

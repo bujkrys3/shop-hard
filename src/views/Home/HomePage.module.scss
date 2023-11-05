@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  margin: 0 auto;
+  width: 90%;
+  flex-direction: column;
+  margin-top: 100px;
+  align-items: center;
+  .title {
+    font-size: 3rem;
+    margin: 1rem 0;
+  }
+}
+
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 2rem auto;
+  width: 100%;
+  &__product {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
