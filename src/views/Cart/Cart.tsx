@@ -3,8 +3,8 @@ import { useCart } from "../../context/CartContext";
 import { NavBar } from "../../components/NavBar/NavBar";
 import classes from "./Cart.module.scss";
 import { Link } from "react-router-dom";
-import { Button } from "../../components/Button/Button";
 import { Discount } from "../../components/Discount/Discount";
+import { Delivery } from "../../components/Delivery/Delivery";
 
 export const Cart = () => {
   const { cart, setQuantityOfProduct, increaseQuantity, reduceQuantity } =
@@ -74,14 +74,7 @@ export const Cart = () => {
             </li>
           ))}
           <Discount />
-          <div className={classes.summary}>
-            <p className={classes.summary__totalPrice}>
-              Total Price: {cart.totalPrice.toFixed(2)} $
-            </p>
-            <Link to="/delivery">
-              <Button name="Delivery" onClick={() => {}} />
-            </Link>
-          </div>
+          <Delivery />
         </ul>
       </div>
     </>

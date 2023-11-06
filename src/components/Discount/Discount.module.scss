@@ -1,25 +1,27 @@
-.error {
-  color: red;
-  font-weight: bold;
-  font-size: 1.2rem;
-  text-align: center;
-  margin: 1rem 0;
-}
-
 .wrapper {
   display: flex;
   max-width: 100%;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
 
-  .usedDiscount {
+  .discountInfo {
     display: flex;
-    align-items: center;
-    color: red;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-right: 20px;
-
+    .error {
+      color: red;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: center;
+      margin: 1rem 0;
+    }
+    &__usedCode {
+      display: flex;
+      align-items: center;
+      color: red;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-right: 20px;
+    }
     &__button {
       font-weight: normal;
       padding: 0.2rem 0.2rem;

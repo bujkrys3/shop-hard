@@ -51,20 +51,6 @@ export const Discount = () => {
 
   return (
     <form className={classes.wrapper}>
-      {discount.usedDiscount && (
-        <div className={classes.usedDiscount}>
-          <p>{discount.usedDiscount}</p>
-          <Button
-            className={classes.usedDiscount__button}
-            name="X"
-            onClick={() => {
-              removeDiscountPrice();
-              removeDiscountPriceInCart();
-              removeDiscountCode();
-            }}
-          />
-        </div>
-      )}
       <div className={classes.discount}>
         <label className={classes.discount__label} htmlFor="discountCode">
           Discount code
@@ -81,7 +67,23 @@ export const Discount = () => {
           onClick={handleSubmit((data) => {
             addDiscount(data);
           })}
-        />
+        />{" "}
+      </div>
+      <div className={classes.discountInfo}>
+        {discount.usedDiscount && (
+          <div className={classes.discountInfo__usedCode}>
+            <p>{discount.usedDiscount}</p>
+            <Button
+              className={classes.discountInfo__button}
+              name="X"
+              onClick={() => {
+                removeDiscountPrice();
+                removeDiscountPriceInCart();
+                removeDiscountCode();
+              }}
+            />
+          </div>
+        )}
         <ErrorMessage errors={errors} name="discountCode" />
       </div>
     </form>

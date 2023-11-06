@@ -106,6 +106,22 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCart(initialState);
   };
 
+  const updatePriceAndQuantity = () => {
+    const totalPrice = cart.items.reduce(
+      (acc, item) =>
+        acc +
+        (item.discountPrice !== undefined
+          ? item.discountPrice * item.quantity
+          : item.price * item.quantity),
+      0
+    );
+    const totalQuantity = cart.items.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
+    setCart({ ...cart, totalPrice, totalQuantity });
+  };
+
   useEffect(() => {
     const totalPrice = cart.items.reduce(
       (acc, item) =>
@@ -120,7 +136,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       0
     );
     setCart({ ...cart, totalPrice, totalQuantity });
-  }, [cart.items, cart]);
+  }, [cart.items]);
 
   return (
     <CartContext.Provider
