@@ -1,8 +1,7 @@
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { useForm } from "react-hook-form";
-import { NavBar } from "../../components/NavBar/NavBar";
 import classes from "./DeliveryForm.module.scss";
-import { Button } from "../../components/Button/Button";
+import { Button } from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useProducts } from "../../context/ProductContext";
@@ -16,12 +15,18 @@ interface FormData {
   email: string;
 }
 
-export const DeliveryForm: React.FC = () => {
+interface DeliveryFormProps {
+  submitSuccessfulHandler: () => void;
+}
+
+export const DeliveryForm: React.FC<DeliveryFormProps> = ({
+  submitSuccessfulHandler,
+}) => {
   const {
     register,
     reset,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm<FormData>();
 
   const navigate = useNavigate();
@@ -35,6 +40,7 @@ export const DeliveryForm: React.FC = () => {
     resetCart();
     removeDiscountPrice();
     removeDiscountCode();
+    submitSuccessfulHandler();
     reset();
   };
 
@@ -44,7 +50,6 @@ export const DeliveryForm: React.FC = () => {
 
   return (
     <div>
-      <NavBar />
       <form className={classes.wrapper} onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.delivery}>
           <div className={classes.delivery__input}>
@@ -175,11 +180,6 @@ export const DeliveryForm: React.FC = () => {
             type="submit"
           />
         </div>
-        {isSubmitSuccessful && (
-          <span className={classes.delivery__success}>
-            Your order has been sent
-          </span>
-        )}
       </form>
     </div>
   );

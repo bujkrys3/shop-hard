@@ -1,12 +1,21 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Product } from "../../utils/types/productsInterface";
 import classes from "./ProductWidget.module.scss";
 import { Button } from "../Button/Button";
 import { useCart } from "../../context/CartContext";
 import { Link } from "react-router-dom";
+import { set } from "react-hook-form";
 
 export const ProductWidget = ({ product }: { product: Product }) => {
-  const { addToCart } = useCart();
+  const { cart, addToCart } = useCart();
+  const [buttonName, setButtonName] = useState("Add to cart");
+
+  const changeButtonName = () => {
+    setButtonName("Added");
+    setTimeout(() => {
+      setButtonName("Add to cart");
+    }, 3000);
+  };
 
   const classWithDiscount = useMemo(() => {
     return product.discountPrice
@@ -32,16 +41,15 @@ export const ProductWidget = ({ product }: { product: Product }) => {
           className={classes.imageContainer__image}
           src={product.image}
           alt={product.title}
-          // width={320}
-          // height={340}
         />
       </Link>
       <div className={classes.controls}>
         <p className={classes.controls__description}>{product.description}</p>
         <Button
-          name="Add to cart"
+          name={buttonName}
           onClick={() => {
             addToCart(product);
+            changeButtonName();
           }}
         />
       </div>

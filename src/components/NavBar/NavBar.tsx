@@ -29,6 +29,7 @@ export const NavBar = () => {
             isCategoryVisible ? classes.visible : ""
           }`}
         >
+          <Link to={'/products'} className={classes.list__item}>All Products</Link>
           {category.map((item, index) => {
             return (
               <Link

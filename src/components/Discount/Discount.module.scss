@@ -4,25 +4,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-
+  .error {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1rem 0;
+  }
   .discountInfo {
     display: flex;
-    margin-top: 1rem;
-    .error {
-      color: red;
-      font-weight: bold;
-      font-size: 1.2rem;
-      text-align: center;
-      margin: 1rem 0;
-    }
-    &__usedCode {
-      display: flex;
-      align-items: center;
-      color: red;
-      font-weight: bold;
-      font-size: 1.2rem;
-      margin-right: 20px;
-    }
+    align-items: center;
+    color: red;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 20px;
+
     &__button {
       font-weight: normal;
       padding: 0.2rem 0.2rem;

@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  .emptyCartTitle {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .emptyCartLink {
+    text-decoration: none;
+    font-size: 2rem;
+  }
+}

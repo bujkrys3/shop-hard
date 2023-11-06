@@ -51,41 +51,41 @@ export const Discount = () => {
 
   return (
     <form className={classes.wrapper}>
-      <div className={classes.discount}>
-        <label className={classes.discount__label} htmlFor="discountCode">
-          Discount code
-        </label>
-        <input
-          className={classes.discount__input}
-          id="discountCode"
-          type="string"
-          {...register("discountCode")}
-        />
-        <Button
-          className={classes.discount__button}
-          name="Add discount"
-          onClick={handleSubmit((data) => {
-            addDiscount(data);
-          })}
-        />{" "}
-      </div>
-      <div className={classes.discountInfo}>
-        {discount.usedDiscount && (
-          <div className={classes.discountInfo__usedCode}>
-            <p>{discount.usedDiscount}</p>
-            <Button
-              className={classes.discountInfo__button}
-              name="X"
-              onClick={() => {
-                removeDiscountPrice();
-                removeDiscountPriceInCart();
-                removeDiscountCode();
-              }}
-            />
-          </div>
-        )}
-        <ErrorMessage errors={errors} name="discountCode" />
-      </div>
+      {discount.usedDiscount === "" && (
+        <div className={classes.discount}>
+          <label className={classes.discount__label} htmlFor="discountCode">
+            Discount code
+          </label>
+          <input
+            className={classes.discount__input}
+            id="discountCode"
+            type="string"
+            {...register("discountCode")}
+          />
+          <Button
+            className={classes.discount__button}
+            name="Add discount"
+            onClick={handleSubmit((data) => {
+              addDiscount(data);
+            })}
+          />
+        </div>
+      )}
+      {discount.usedDiscount && (
+        <div className={classes.discountInfo}>
+          <p>{discount.usedDiscount}</p>
+          <Button
+            className={classes.discountInfo__button}
+            name="X"
+            onClick={() => {
+              removeDiscountPrice();
+              removeDiscountPriceInCart();
+              removeDiscountCode();
+            }}
+          />
+        </div>
+      )}
+      <ErrorMessage errors={errors} name="discountCode" />
     </form>
   );
 };
