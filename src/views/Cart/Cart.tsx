@@ -41,7 +41,7 @@ export const Cart = () => {
                       ? product.discountPrice * product.quantity
                       : product.price * product.quantity
                     ).toFixed(2)}
-                    $ $
+                    $
                   </p>
                 )}
 
