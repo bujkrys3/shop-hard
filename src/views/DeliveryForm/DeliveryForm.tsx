@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { NavBar } from "../../components/NavBar/NavBar";
 import classes from "./DeliveryForm.module.scss";
 import { Button } from "../../components/Button/Button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useProducts } from "../../context/ProductContext";
 import { useDiscount } from "../../context/DiscountContext";
@@ -24,6 +24,8 @@ export const DeliveryForm: React.FC = () => {
     formState: { errors, isSubmitSuccessful },
   } = useForm<FormData>();
 
+  const navigate = useNavigate();
+
   const { cart, resetCart } = useCart();
   const { removeDiscountPrice } = useProducts();
   const { removeDiscountCode } = useDiscount();
@@ -35,6 +37,10 @@ export const DeliveryForm: React.FC = () => {
     removeDiscountCode();
     reset();
   };
+
+  const isCartEmpty = useMemo(() => {
+    return cart.items.length === 0;
+  }, [cart.items.length]);
 
   return (
     <div>
@@ -155,10 +161,19 @@ export const DeliveryForm: React.FC = () => {
           )}
         </div>
         <div className={classes.buttons}>
-          <Link to="/cart">
-            <Button name="Back" onClick={() => {}} className={classes.button} />
-          </Link>
-          <Button name="Send" className={classes.button} type="submit" />
+          <Button
+            name="Back"
+            onClick={() => {
+              navigate("/cart");
+            }}
+            className={classes.button}
+          />
+          <Button
+            disabled={isCartEmpty}
+            name="Send"
+            className={classes.button}
+            type="submit"
+          />
         </div>
         {isSubmitSuccessful && (
           <span className={classes.delivery__success}>
