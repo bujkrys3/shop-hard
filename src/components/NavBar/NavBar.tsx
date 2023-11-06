@@ -21,6 +21,9 @@ export const NavBar = () => {
         <div className={classes.nav__title} onClick={toggleCategoryVisibility}>
           Category
         </div>
+        <Link to={"/contact"} className={classes.nav__title}>
+          Contact
+        </Link>
         <ul
           className={`${classes.list} ${
             isCategoryVisible ? classes.visible : ""

@@ -3,6 +3,7 @@ import { HomePage } from "../views/Home/HomePage";
 import { ProductPage } from "../views/ProductPage/ProductPage";
 import { Category } from "../views/Category/Category";
 import { Cart } from "../views/Cart/Cart";
+import { Contact } from "../views/Contact/Contact";
 import {
   BrowserRouter as Router,
   Route,
@@ -20,6 +21,7 @@ export const Pages = () => {
         <Route path="/category" element={<Category />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/delivery" element={<DeliveryForm />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </HashRouter>

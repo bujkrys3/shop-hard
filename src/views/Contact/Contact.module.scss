@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  margin: 0 auto;
+  width: 90%;
+  flex-direction: column;
+  margin-top: 120px;
+  align-items: start;
+
+  .name {
+    font-size: 3rem;
+    margin: 1rem 0;
+  }
+
+  .contact {
+    display: flex;
+    max-width: 100%;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    &__label {
+      width: 100px;
+    }
+    &__description {
+    }
+  }
+}
