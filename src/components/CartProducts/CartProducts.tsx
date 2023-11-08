@@ -1,11 +1,14 @@
 import React from "react";
 import { useCart } from "../../context/CartContext";
-import classes from "./CartForm.module.scss";
-import { Link } from "react-router-dom";
+import classes from "./CartProducts.module.scss";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "../Button/Button";
 
 export const CartForm = () => {
   const { cart, setQuantityOfProduct, increaseQuantity, reduceQuantity } =
     useCart();
+
+  const navigate = useNavigate();
 
   return (
     <div className={classes.wrapper}>
@@ -69,12 +72,19 @@ export const CartForm = () => {
             </div>
           </li>
         ))}
+        <div className={classes.total}>
+          <p className={classes.total__price}>
+            Total Price: {cart.totalPrice.toFixed(2)}$
+          </p>{" "}
+          <Button
+            onClick={() => {
+              navigate("/products");
+            }}
+            name="Back to shop"
+            className="button"
+          />
+        </div>
       </ul>
-      <div className={classes.total}>
-        <p className={classes.total__price}>
-          Total Price: {cart.totalPrice.toFixed(2)}$
-        </p>
-      </div>
     </div>
   );
 };

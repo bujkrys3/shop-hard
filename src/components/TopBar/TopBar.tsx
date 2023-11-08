@@ -1,4 +1,4 @@
-import classes from "./NavBar.module.scss";
+import classes from "./TopBar.module.scss";
 import { Link } from "react-router-dom";
 import { CartStatus } from "../CartStatus/CartStatus";
 

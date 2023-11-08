@@ -73,16 +73,19 @@ export const Discount = () => {
       )}
       {discount.usedDiscount && (
         <div className={classes.discountInfo}>
-          <p>{discount.usedDiscount}</p>
-          <Button
-            className={classes.discountInfo__button}
-            name="X"
-            onClick={() => {
-              removeDiscountPrice();
-              removeDiscountPriceInCart();
-              removeDiscountCode();
-            }}
-          />
+          <p>Used discount code:</p>
+          <div className={classes.discountInfo__code}>
+            <p>{discount.usedDiscount}</p>
+            <Button
+              className={classes.discountInfo__button}
+              name="X"
+              onClick={() => {
+                removeDiscountPrice();
+                removeDiscountPriceInCart();
+                removeDiscountCode();
+              }}
+            />
+          </div>
         </div>
       )}
       <ErrorMessage errors={errors} name="discountCode" />

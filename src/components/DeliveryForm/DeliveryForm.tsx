@@ -164,13 +164,6 @@ export const DeliveryForm: React.FC<DeliveryFormProps> = ({
       </div>
       <div className={classes.buttons}>
         <Button
-          name="Back"
-          onClick={() => {
-            navigate("/cart");
-          }}
-          className={classes.button}
-        />
-        <Button
           disabled={isCartEmpty}
           name="Send"
           className={classes.button}

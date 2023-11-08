@@ -29,7 +29,6 @@ export const SideBar = () => {
       const wrapRect = wrap.getBoundingClientRect();
       wrapTwo.style.left = wrapRect.left + "px";
       wrapTwo.style.top = wrapRect.top + "px";
-      console.log(wrapRect.left);
     }
 
     positionWrapTwo();

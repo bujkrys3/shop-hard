@@ -4,6 +4,7 @@ import classes from "./ProductWidget.module.scss";
 import { Button } from "../Button/Button";
 import { useCart } from "../../context/CartContext";
 import { Link } from "react-router-dom";
+import { Rating } from "../Rating/Rating";
 
 export const ProductWidget = ({ product }: { product: Product }) => {
   const { addToCart } = useCart();
@@ -42,6 +43,7 @@ export const ProductWidget = ({ product }: { product: Product }) => {
           alt={product.title}
         />
       </Link>
+      <Rating rate={product.rating.rate} count={product.rating.count} />
       <div className={classes.controls}>
         <p className={classes.controls__description}>{product.description}</p>
         <Button

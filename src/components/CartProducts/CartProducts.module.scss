@@ -74,12 +74,19 @@
     }
   }
   .total {
-    width: 100%;
-    max-width: 800px;
     display: flex;
-    justify-content: right;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+
     &__price {
       font-size: 1.5rem;
+      margin-bottom: 1rem;
     }
+  }
+  .button {
+    width: auto;
+    display: flex;
+    justify-content: end;
   }
 }

@@ -22,7 +22,7 @@ export const Filter = () => {
         <input
           type="text"
           name="priceFrom"
-          placeholder="od"
+          placeholder="from"
           value={filterData.price.from}
           onChange={(event) => {
             const input = event.target.value;
@@ -37,7 +37,7 @@ export const Filter = () => {
         <input
           type="text"
           name="priceTo"
-          placeholder="do"
+          placeholder="to"
           value={filterData.price.to}
           onChange={(event) => {
             const input = event.target.value;

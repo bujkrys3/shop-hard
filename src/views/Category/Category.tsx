@@ -3,7 +3,7 @@ import classes from "./Category.module.scss";
 import { ProductWidget } from "../../components/ProductWidget/ProductWidget";
 import { useProducts } from "../../context/ProductContext";
 import { useFilter } from "../../context/FilterContext";
-import { NavBar } from "../../components/NavBar/NavBar";
+import { NavBar } from "../../components/TopBar/TopBar";
 import { SideBar } from "../../components/SideBar/SideBar";
 
 export const Category = () => {
@@ -14,13 +14,14 @@ export const Category = () => {
     return filteredProducts(categoryProducts);
   }, [categoryProducts, filteredProducts]);
 
-
   return (
     <div>
       <NavBar />
       <SideBar />
       <div className={classes.wrapper}>
-        <h3 className={classes.title}>{category}</h3>
+        <div className={classes.nameCategory}>
+          <h3 className={classes.title}>{category}</h3>
+        </div>
         <div className={classes.products}>
           {products.map((product, index) => (
             <div className={classes.products__product} key={index}>

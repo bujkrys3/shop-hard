@@ -63,7 +63,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const sortedProducts = [...products].sort(
-      (a, b) => a.rating.rate - b.rating.rate
+      (a, b) => b.rating.rate - a.rating.rate
     );
     setFavoriteProducts(sortedProducts.slice(0, 3));
   }, [products]);

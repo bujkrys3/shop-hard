@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import { NavBar } from "../../components/NavBar/NavBar";
+import { NavBar } from "../../components/TopBar/TopBar";
 import classes from "./ProductPage.module.scss";
 import { useProducts } from "../../context/ProductContext";
 import { useCart } from "../../context/CartContext";
 import { Button } from "../../components/Button/Button";
 import { SideBar } from "../../components/SideBar/SideBar";
+import { Rating } from "../../components/Rating/Rating";
 
 export const ProductPage = () => {
   let { id } = useParams();
@@ -13,6 +14,8 @@ export const ProductPage = () => {
   const { addToCart } = useCart();
   const product = useMemo(() => products[Number(id) - 1], [products, id]);
   const [buttonName, setButtonName] = useState("Add to cart");
+
+  console.log(product);
 
   const changeButtonName = () => {
     setButtonName("Added");
@@ -43,6 +46,9 @@ export const ProductPage = () => {
             src={product.image}
             alt={product.title}
           />
+        </div>
+        <div>
+          <Rating rate={product.rating.rate} count={product.rating.count} />
         </div>
         <p className={classes.product__description}>{product.description}</p>
         <Button

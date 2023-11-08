@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useProducts } from "../../context/ProductContext";
 import { ProductWidget } from "../../components/ProductWidget/ProductWidget";
-import { NavBar } from "../../components/NavBar/NavBar";
+import { NavBar } from "../../components/TopBar/TopBar";
 import classes from "./Products.module.scss";
 import { SideBar } from "../../components/SideBar/SideBar";
 import { useFilter } from "../../context/FilterContext";
@@ -19,7 +19,9 @@ export const Products = () => {
       <NavBar />
       <SideBar />
       <div className={classes.wrapper}>
-        <h3 className={classes.title}>All products</h3>
+        <div className={classes.nameCategory}>
+          <h3 className={classes.title}>All products</h3>
+        </div>
         <div className={classes.products}>
           {filteredProd.map((product, index) => (
             <div className={classes.products__product} key={index}>

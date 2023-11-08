@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { NavBar } from "../../components/NavBar/NavBar";
+import { NavBar } from "../../components/TopBar/TopBar";
 import classes from "./Cart.module.scss";
 import { useCart } from "../../context/CartContext";
-import { CartForm } from "../../components/CartForm/CartForm";
+import { CartForm } from "../../components/CartProducts/CartProducts";
 import { DeliveryForm } from "../../components/DeliveryForm/DeliveryForm";
 import { EmptyCart } from "../../components/EmptyCart/EmptyCart";
 import { Discount } from "../../components/Discount/Discount";
