@@ -1,9 +1,10 @@
 import React from "react";
 import { Pages } from "./routes/Pages";
+import classes from "./App.module.scss";
 
 export const App = () => {
   return (
-    <div>
+    <div className={classes.wrapper}>
       <Pages />
     </div>
   );

@@ -4,7 +4,8 @@ import { Product } from "../utils/types/productsInterface";
 export interface ProductContextInterface {
   products: Product[];
   favoriteProducts: Product[];
-  category: string[];
+  categories: string[];
+  category: string;
   categoryProducts: Product[];
   fetchCategoryProducts: (category: string) => void;
   setCategoryProductsHandler(category: string): void;
@@ -19,7 +20,8 @@ const ProductContext = React.createContext<ProductContextInterface | null>(
 export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [favoriteProducts, setFavoriteProducts] = useState<Product[]>([]);
-  const [category, setCategory] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [category, setCategory] = useState<string>("");
   const [categoryProducts, setCategoryProducts] = useState<Product[]>([]);
 
   const fetchCategoryProducts = (category: string) => {
@@ -33,6 +35,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
       (product) => product.category === category
     );
     setCategoryProducts(productsCategory);
+    setCategory(category);
   };
 
   const addDiscountPrice = (discountCode: string) => {
@@ -68,14 +71,15 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     fetch("https://fakestoreapi.com/products/categories")
       .then((res) => res.json())
-      .then((data) => setCategory(data));
-  }, [products]);
+      .then((data) => setCategories(data));
+  }, []);
 
   return (
     <ProductContext.Provider
       value={{
         products,
         favoriteProducts,
+        categories,
         category,
         categoryProducts,
         fetchCategoryProducts,

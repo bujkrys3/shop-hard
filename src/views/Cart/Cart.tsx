@@ -33,9 +33,11 @@ export const Cart = () => {
         <div className={classes.wrapper}>
           <div className={classes.cart}>
             <CartForm />
-            <Discount />
           </div>
-          <DeliveryForm submitSuccessfulHandler={submitSuccessfulHandler} />
+          <div>
+            <Discount />
+            <DeliveryForm submitSuccessfulHandler={submitSuccessfulHandler} />
+          </div>
         </div>
       )}
     </>

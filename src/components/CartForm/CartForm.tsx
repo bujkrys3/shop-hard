@@ -2,7 +2,6 @@ import React from "react";
 import { useCart } from "../../context/CartContext";
 import classes from "./CartForm.module.scss";
 import { Link } from "react-router-dom";
-import { Discount } from "../../components/Discount/Discount";
 
 export const CartForm = () => {
   const { cart, setQuantityOfProduct, increaseQuantity, reduceQuantity } =

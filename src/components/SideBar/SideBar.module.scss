@@ -1,0 +1,47 @@
+.wrapper {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 150px;
+  height: calc(100vh);
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+
+  .nav {
+    &__title {
+      padding: 5px;
+      font-size: 2rem;
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  .list {
+    display: none;
+    flex-direction: column;
+
+    &__item {
+      width: auto;
+      padding: 5px;
+      list-style-type: none;
+      text-decoration: none;
+      color: black;
+      text-transform: uppercase;
+    }
+  }
+  .visible {
+    display: flex;
+    animation: fadeIn 0.5s;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

@@ -1,9 +1,13 @@
 .wrapper {
   display: flex;
+  margin: 0 auto;
   width: 100%;
   flex-direction: row;
-  align-items: flex-start;
-  margin: 120px 0 0;
+  justify-content: space-between;
+  margin-top: 120px;
+  min-height: calc(100vh - 120px);
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 
   .success {
     display: block;
@@ -16,7 +20,6 @@
   .cart {
     display: flex;
     flex-direction: column;
-    width: auto;
-    margin-right: 1rem;
+    margin: 1rem 1rem 1rem 0;
   }
 }

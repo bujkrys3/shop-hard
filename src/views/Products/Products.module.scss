@@ -1,6 +1,32 @@
 .wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  width: 90%;
-  margin: 100px auto 0;
+  display: flex;
+  margin: 0 auto;
+  max-width: 100%;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 120px;
+  margin-left: 170px;
+  min-height: calc(100vh - 120px);
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  .title {
+    font-size: 3rem;
+    margin: 1rem 0;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 2rem auto;
+  width: 100%;
+  &__product {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
 }

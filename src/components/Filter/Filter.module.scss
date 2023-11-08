@@ -1,0 +1,23 @@
+.filter {
+  display: flex;
+  width: 150px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5px;
+
+  &__label {
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+
+  &__price {
+    display: flex;
+    input {
+      width: 70px;
+    }
+  }
+
+  &__select {
+    width: 140px;
+  }
+}
