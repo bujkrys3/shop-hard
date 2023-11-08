@@ -19,12 +19,14 @@ export const Cart = () => {
   };
 
   return (
-    <>
+    <div>
       <NavBar />
       {cart.items.length === 0 && (
-        <div className={classes.wrapper}>
+        <div className={classes.container}>
           {isSubmitSuccessful && (
-            <p className={classes.success}>Your order has been sent!</p>
+            <p className={classes.container__success}>
+              Your order has been sent!
+            </p>
           )}
           {!isSubmitSuccessful && <EmptyCart />}
         </div>
@@ -34,12 +36,16 @@ export const Cart = () => {
           <div className={classes.cart}>
             <CartForm />
           </div>
-          <div>
-            <Discount />
-            <DeliveryForm submitSuccessfulHandler={submitSuccessfulHandler} />
+          <div className={classes.sideWrapper}>
+            <div className={classes.sideWrapper__discount}>
+              <Discount />
+            </div>
+            <div className={classes.sideWrapper__delivery}>
+              <DeliveryForm submitSuccessfulHandler={submitSuccessfulHandler} />
+            </div>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };

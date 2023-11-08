@@ -1,13 +1,15 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 1rem 1rem 0;
 
   .cartList {
     display: flex;
-    max-width: 700px;
+    max-width: 800px;
     flex-direction: column;
     list-style: none;
     padding: 0;
@@ -69,6 +71,15 @@
           margin-left: 5px;
         }
       }
+    }
+  }
+  .total {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: right;
+    &__price {
+      font-size: 1.5rem;
     }
   }
 }

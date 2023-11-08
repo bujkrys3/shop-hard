@@ -4,7 +4,7 @@ import classes from "./Contact.module.scss";
 
 export const Contact = () => {
   return (
-    <div>
+    <div className={classes.container}>
       <NavBar />
       <div className={classes.wrapper}>
         <h1 className={classes.name}>Nazwa Firmy</h1>

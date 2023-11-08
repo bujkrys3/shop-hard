@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useProducts } from "../../context/ProductContext";
 import { ProductWidget } from "../../components/ProductWidget/ProductWidget";
 import { NavBar } from "../../components/NavBar/NavBar";
 import classes from "./Products.module.scss";
 import { SideBar } from "../../components/SideBar/SideBar";
+import { useFilter } from "../../context/FilterContext";
 
 export const Products = () => {
   const { products } = useProducts();
+  const { filteredProducts } = useFilter();
+
+  const filteredProd = useMemo(() => {
+    return filteredProducts(products);
+  }, [products, filteredProducts]);
+
   return (
     <div>
       <NavBar />
@@ -14,7 +21,7 @@ export const Products = () => {
       <div className={classes.wrapper}>
         <h3 className={classes.title}>All products</h3>
         <div className={classes.products}>
-          {products.map((product, index) => (
+          {filteredProd.map((product, index) => (
             <div className={classes.products__product} key={index}>
               <ProductWidget product={product} />
             </div>

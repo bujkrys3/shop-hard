@@ -4,17 +4,16 @@ import classes from "./ProductWidget.module.scss";
 import { Button } from "../Button/Button";
 import { useCart } from "../../context/CartContext";
 import { Link } from "react-router-dom";
-import { set } from "react-hook-form";
 
 export const ProductWidget = ({ product }: { product: Product }) => {
-  const { cart, addToCart } = useCart();
+  const { addToCart } = useCart();
   const [buttonName, setButtonName] = useState("Add to cart");
 
   const changeButtonName = () => {
     setButtonName("Added");
     setTimeout(() => {
       setButtonName("Add to cart");
-    }, 3000);
+    }, 1000);
   };
 
   const classWithDiscount = useMemo(() => {
