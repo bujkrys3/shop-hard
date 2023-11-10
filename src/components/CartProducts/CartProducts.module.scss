@@ -9,14 +9,14 @@
 
   .cartList {
     display: flex;
-    max-width: 800px;
+    width: 100%;
     flex-direction: column;
     padding: 0;
     list-style: none;
 
     .item {
       display: grid;
-      grid-template-columns: 180px 1fr 180px;
+      grid-template-columns: 180px 1fr 120px;
       max-height: 100px;
       margin-bottom: 20px;
 
@@ -55,7 +55,12 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        width: 180px;
+        
+        &__priceWrap {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+        }
 
         &__price {
           margin-right: 10px;

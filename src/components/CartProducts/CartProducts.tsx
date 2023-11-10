@@ -25,24 +25,26 @@ export const CartForm = () => {
               <p className={classes.item__details__title}>{product.title}</p>
             </div>
             <div className={classes.item__controls}>
-              <p
-                className={
-                  product.discountPrice
-                    ? classes.item__controls__discount
-                    : classes.item__controls__price
-                }
-              >
-                {(product.price * product.quantity).toFixed(2)}$
-              </p>
-              {product.discountPrice && (
-                <p className={classes.item__controls__price}>
-                  {(product.discountPrice !== undefined
-                    ? product.discountPrice * product.quantity
-                    : product.price * product.quantity
-                  ).toFixed(2)}
-                  $
+              <div className={classes.item__controls__priceWrap}>
+                <p
+                  className={
+                    product.discountPrice
+                      ? classes.item__controls__discount
+                      : classes.item__controls__price
+                  }
+                >
+                  {(product.price * product.quantity).toFixed(2)}$
                 </p>
-              )}
+                {product.discountPrice && (
+                  <p className={classes.item__controls__price}>
+                    {(product.discountPrice !== undefined
+                      ? product.discountPrice * product.quantity
+                      : product.price * product.quantity
+                    ).toFixed(2)}
+                    $
+                  </p>
+                )}
+              </div>
 
               <input
                 className={classes.item__controls__input}
