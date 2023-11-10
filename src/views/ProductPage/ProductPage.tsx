@@ -5,7 +5,6 @@ import classes from "./ProductPage.module.scss";
 import { useProducts } from "../../context/ProductContext";
 import { useCart } from "../../context/CartContext";
 import { Button } from "../../components/Button/Button";
-import { SideBar } from "../../components/SideBar/SideBar";
 import { Rating } from "../../components/Rating/Rating";
 
 export const ProductPage = () => {
@@ -33,7 +32,6 @@ export const ProductPage = () => {
   return (
     <div>
       <NavBar />
-      <SideBar />
       <div className={classes.product} key={product.id}>
         <h4 className={classes.product__title}>{product.title}</h4>
         <p className={classWithDiscount}>{product.price}$</p>

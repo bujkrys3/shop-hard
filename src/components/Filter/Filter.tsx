@@ -64,7 +64,9 @@ export const Filter = () => {
         <option value="highestRating">Highest Rating</option>
         <option value="lowestRating">Lowest Rating</option>
       </select>
-      <button className={classes.filter__button} onClick={resetFilter}>Reset</button>
+      <button className={classes.filter__button} onClick={resetFilter}>
+        Reset
+      </button>
     </div>
   );
 };

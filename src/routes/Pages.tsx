@@ -5,13 +5,7 @@ import { Category } from "../views/Category/Category";
 import { Cart } from "../views/Cart/Cart";
 import { Contact } from "../views/Contact/Contact";
 import { Products } from "../views/Products/Products";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  HashRouter,
-} from "react-router-dom";
-import { DeliveryForm } from "../components/DeliveryForm/DeliveryForm";
+import { Route, Routes, HashRouter } from "react-router-dom";
 
 export const Pages = () => {
   return (
