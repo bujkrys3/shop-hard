@@ -3,14 +3,12 @@ import { NavBar } from "../../components/TopBar/TopBar";
 import classes from "./HomePage.module.scss";
 import { useProducts } from "../../context/ProductContext";
 import { ProductWidget } from "../../components/ProductWidget/ProductWidget";
-import { SideBar } from "../../components/SideBar/SideBar";
 
 export const HomePage = () => {
   const { favoriteProducts } = useProducts();
   return (
     <div>
       <NavBar />
-      <SideBar />
       <div className={classes.wrapper}>
         <div className={classes.nameCategory}>
           <h3 className={classes.title}>Popular products</h3>

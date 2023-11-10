@@ -7,7 +7,6 @@ export interface ProductContextInterface {
   categories: string[];
   category: string;
   categoryProducts: Product[];
-  fetchCategoryProducts: (category: string) => void;
   setCategoryProductsHandler(category: string): void;
   addDiscountPrice: (discountCode: string) => void;
   removeDiscountPrice: () => void;
@@ -23,12 +22,6 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [categories, setCategories] = useState<string[]>([]);
   const [category, setCategory] = useState<string>("");
   const [categoryProducts, setCategoryProducts] = useState<Product[]>([]);
-
-  const fetchCategoryProducts = (category: string) => {
-    fetch(`https://fakestoreapi.com/products/category/${category}`)
-      .then((res) => res.json())
-      .then((data) => setCategoryProducts(data));
-  };
 
   const setCategoryProductsHandler = (category: string) => {
     const productsCategory = products.filter(
@@ -82,7 +75,6 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         categories,
         category,
         categoryProducts,
-        fetchCategoryProducts,
         setCategoryProductsHandler,
         addDiscountPrice,
         removeDiscountPrice,
