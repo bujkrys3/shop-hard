@@ -16,11 +16,37 @@ interface FormData {
   street: string;
   city: string;
   houseNumber: string;
+  directional: string;
 }
 
 interface DeliveryFormProps {
   submitSuccessfulHandler: () => void;
 }
+
+const countries = [
+  { code: "+44", country: "United Kingdom" },
+  { code: "+33", country: "France" },
+  { code: "+49", country: "Germany" },
+  { code: "+34", country: "Spain" },
+  { code: "+39", country: "Italy" },
+  { code: "+31", country: "Netherlands" },
+  { code: "+32", country: "Belgium" },
+  { code: "+41", country: "Switzerland" },
+  { code: "+46", country: "Sweden" },
+  { code: "+47", country: "Norway" },
+  { code: "+45", country: "Denmark" },
+  { code: "+358", country: "Finland" },
+  { code: "+353", country: "Ireland" },
+  { code: "+352", country: "Luxembourg" },
+  { code: "+43", country: "Austria" },
+  { code: "+30", country: "Greece" },
+  { code: "+420", country: "Czech Republic" },
+  { code: "+36", country: "Hungary" },
+  { code: "+48", country: "Poland" },
+  { code: "+421", country: "Slovakia" },
+  { code: "+386", country: "Slovenia" },
+  { code: "+385", country: "Croatia" },
+];
 
 export const DeliveryForm: React.FC<DeliveryFormProps> = ({
   submitSuccessfulHandler,
@@ -122,45 +148,12 @@ export const DeliveryForm: React.FC<DeliveryFormProps> = ({
               required: true,
             })}
           >
-            <option value="">Select a country</option>
-            <option value="al">Albania</option>
-            <option value="at">Austria</option>
-            <option value="be">Belgium</option>
-            <option value="ba">Bosnia and Herzegovina</option>
-            <option value="bg">Bulgaria</option>
-            <option value="hr">Croatia</option>
-            <option value="cy">Cyprus</option>
-            <option value="cz">Czech Republic</option>
-            <option value="dk">Denmark</option>
-            <option value="ee">Estonia</option>
-            <option value="fi">Finland</option>
-            <option value="fr">France</option>
-            <option value="de">Germany</option>
-            <option value="gr">Greece</option>
-            <option value="hu">Hungary</option>
-            <option value="is">Iceland</option>
-            <option value="ie">Ireland</option>
-            <option value="it">Italy</option>
-            <option value="lv">Latvia</option>
-            <option value="lt">Lithuania</option>
-            <option value="lu">Luxembourg</option>
-            <option value="mk">North Macedonia</option>
-            <option value="mt">Malta</option>
-            <option value="md">Moldova</option>
-            <option value="me">Montenegro</option>
-            <option value="nl">Netherlands</option>
-            <option value="no">Norway</option>
-            <option value="pl">Poland</option>
-            <option value="pt">Portugal</option>
-            <option value="ro">Romania</option>
-            <option value="rs">Serbia</option>
-            <option value="sk">Slovakia</option>
-            <option value="si">Slovenia</option>
-            <option value="es">Spain</option>
-            <option value="se">Sweden</option>
-            <option value="ch">Switzerland</option>
-            <option value="ua">Ukraine</option>
-            <option value="gb">United Kingdom</option>
+            <option value="">Select country</option>
+            {countries.map((country) => (
+              <option key={country.country} value={country.country}>
+                {country.country}
+              </option>
+            ))}
           </select>
         </div>
         {errors.countriesSelect && (
@@ -238,25 +231,39 @@ export const DeliveryForm: React.FC<DeliveryFormProps> = ({
       <div className={classes.delivery}>
         <div className={classes.delivery__input}>
           <label htmlFor="phoneNumber">Phone Number</label>
-          <input
-            id="phoneNumber"
-            type="text"
-            {...register("phoneNumber", {
-              required: true,
-              pattern: {
-                value: /\d/g,
-                message: "Invalid phone number",
-              },
-              minLength: {
-                value: 8,
-                message: "To short phone number",
-              },
-              maxLength: {
-                value: 10,
-                message: "To long phone number",
-              },
-            })}
-          />
+          <div className={classes.delivery__phone}>
+            <select
+              id="directional"
+              {...register("directional", {
+                required: true,
+              })}
+            >
+              {countries.map((country) => (
+                <option key={country.country} value={country.code}>
+                  {country.code}
+                </option>
+              ))}
+            </select>
+            <input
+              id="phoneNumber"
+              type="text"
+              {...register("phoneNumber", {
+                required: true,
+                pattern: {
+                  value: /\d/g,
+                  message: "Invalid phone number",
+                },
+                minLength: {
+                  value: 7,
+                  message: "To short phone number",
+                },
+                maxLength: {
+                  value: 9,
+                  message: "To long phone number",
+                },
+              })}
+            />
+          </div>
         </div>
         {errors.phoneNumber && (
           <span className={classes.delivery__error}>

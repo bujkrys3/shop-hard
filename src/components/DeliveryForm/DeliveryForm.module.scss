@@ -24,6 +24,20 @@
         height: auto;
       }
     }
+
+    &__phone {
+      display: flex;
+
+      input {
+        width: 175px;
+        height: auto;
+      }
+
+      select {
+        width: 75px;
+        height: auto;
+      }
+    }
     &__error {
       color: red;
     }
