@@ -3,7 +3,7 @@ import classes from "./Filter.module.scss";
 import { useFilter } from "../../context/FilterContext";
 
 export const Filter = () => {
-  const { filterData, setFilterData } = useFilter();
+  const { filterData, setFilterData, resetFilter } = useFilter();
 
   const handleChange = (
     name: string,
@@ -64,6 +64,7 @@ export const Filter = () => {
         <option value="highestRating">Highest Rating</option>
         <option value="lowestRating">Lowest Rating</option>
       </select>
+      <button className={classes.filter__button} onClick={resetFilter}>Reset</button>
     </div>
   );
 };

@@ -1,13 +1,13 @@
 .wrapper {
   display: flex;
-  margin: 0 auto;
-  max-width: 100%;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  min-height: calc(100vh - 120px - 1rem);
+  margin: 0 auto;
   margin-top: 120px;
   margin-left: 170px;
   margin-bottom: 1rem;
-  min-height: calc(100vh - 120px - 1rem);
 
   .nameCategory {
     display: flex;
@@ -18,8 +18,8 @@
   }
 
   .title {
-    font-size: 3rem;
     margin: 1rem 0;
+    font-size: 3rem;
     &::first-letter {
       text-transform: uppercase;
     }
@@ -27,15 +27,15 @@
 }
 
 .products {
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   flex-grow: 1;
   flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 1rem auto 0;
   width: 100%;
+  margin: 1rem auto 0;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   &__product {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));

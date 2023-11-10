@@ -1,19 +1,19 @@
 .filter {
   display: flex;
-  width: 150px;
   flex-direction: column;
   align-items: flex-start;
+  width: 150px;
   padding: 0 10px;
 
   &__label {
-    font-weight: bold;
     margin-top: 1rem;
+    font-weight: bold;
   }
 
   &__price {
-    width: 100%;
-    justify-content: space-between;
     display: flex;
+    justify-content: space-between;
+    width: 100%;
     input {
       width: 60px;
     }
@@ -21,5 +21,10 @@
 
   &__select {
     width: 130px;
+  }
+
+  &__button {
+    margin-top: 1rem;
+    width: 100%;
   }
 }

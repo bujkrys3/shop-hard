@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Product, ProductInCart } from "../utils/types/productsInterface";
 
 export interface CartContextInterface {
@@ -35,6 +35,24 @@ const CartContext = React.createContext<CartContextInterface | null>(null);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<CartState>(initialState);
 
+  const updatePriceAndQuantity = () => {
+    setCart((prevCart) => {
+      const totalPrice = prevCart.items.reduce(
+        (acc, item) =>
+          acc +
+          (item.discountPrice !== undefined
+            ? item.discountPrice * item.quantity
+            : item.price * item.quantity),
+        0
+      );
+      const totalQuantity = prevCart.items.reduce(
+        (acc, item) => acc + item.quantity,
+        0
+      );
+      return { ...prevCart, totalPrice, totalQuantity };
+    });
+  };
+
   const addToCart = (product: Product) => {
     const productInCart = cart.items.find((item) => item.id === product.id);
     if (productInCart) {
@@ -47,6 +65,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       ...cart,
       items: [...cart.items, { ...product, quantity: 1 }],
     });
+    updatePriceAndQuantity();
   };
 
   const increaseQuantity = (productId: number) => {
@@ -54,6 +73,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
     );
     setCart({ ...cart, items: updatedCart });
+    updatePriceAndQuantity();
   };
 
   const reduceQuantity = (productId: number) => {
@@ -66,11 +86,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
     );
     setCart({ ...cart, items: updatedCart });
+    updatePriceAndQuantity();
   };
 
   const removeFromCart = (productId: number) => {
     const updatedCart = cart.items.filter((item) => item.id !== productId);
     setCart({ ...cart, items: updatedCart });
+    updatePriceAndQuantity();
   };
 
   const setQuantityOfProduct = (productId: number, quantity: number) => {
@@ -83,6 +105,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       item.id === productId ? { ...item, quantity } : item
     );
     setCart({ ...cart, items: updatedCart });
+    updatePriceAndQuantity();
   };
 
   const addDiscountPriceInCart = (discountCode: string) => {
@@ -92,6 +115,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       return { ...item, discountPrice };
     });
     setCart({ ...cart, items: updatedCart });
+    updatePriceAndQuantity();
   };
 
   const removeDiscountPriceInCart = () => {
@@ -100,43 +124,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       return { ...item };
     });
     setCart({ ...cart, items: updatedCart });
+    updatePriceAndQuantity();
   };
 
   const resetCart = () => {
     setCart(initialState);
   };
-
-  const updatePriceAndQuantity = () => {
-    const totalPrice = cart.items.reduce(
-      (acc, item) =>
-        acc +
-        (item.discountPrice !== undefined
-          ? item.discountPrice * item.quantity
-          : item.price * item.quantity),
-      0
-    );
-    const totalQuantity = cart.items.reduce(
-      (acc, item) => acc + item.quantity,
-      0
-    );
-    setCart({ ...cart, totalPrice, totalQuantity });
-  };
-
-  useEffect(() => {
-    const totalPrice = cart.items.reduce(
-      (acc, item) =>
-        acc +
-        (item.discountPrice !== undefined
-          ? item.discountPrice * item.quantity
-          : item.price * item.quantity),
-      0
-    );
-    const totalQuantity = cart.items.reduce(
-      (acc, item) => acc + item.quantity,
-      0
-    );
-    setCart({ ...cart, totalPrice, totalQuantity });
-  }, [cart.items]);
 
   return (
     <CartContext.Provider

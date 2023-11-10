@@ -1,19 +1,17 @@
 .container {
   display: flex;
-  margin: 0 auto;
-  width: 100%;
   flex-direction: row;
-  margin-top: 120px;
-  padding-top: 50px;
-  margin-bottom: 1rem;
+  width: 100%;
   min-height: calc(100vh - 120px - 1rem);
+  margin: 120px auto 1rem;
+  padding-top: 50px;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 
   &__success {
     display: block;
-    margin: 0 auto;
     text-align: center;
+    margin: 0 auto;
     font-size: 2rem;
     text-transform: uppercase;
   }
@@ -22,35 +20,33 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-  margin: 0 auto;
   width: 100%;
-  margin-top: 120px;
-  margin-bottom: 1rem;
   min-height: calc(100vh - 120px - 1rem);
   gap: 1rem;
+  margin: 120px auto 1rem;
 
   .cart {
     display: flex;
-    width: 65%;
     flex-direction: column;
+    width: 65%;
     background-color: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   }
 
   .sideWrapper {
     display: flex;
+    flex-direction: column;
     width: 35%;
     min-width: 500px;
-    flex-direction: column;
 
     &__discount {
       background-color: #fff;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     }
     &__delivery {
+      margin: 1rem 0 0;
       background-color: #fff;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-      margin: 1rem 0 0;
     }
   }
 }

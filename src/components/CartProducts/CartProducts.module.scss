@@ -11,14 +11,14 @@
     display: flex;
     max-width: 800px;
     flex-direction: column;
-    list-style: none;
     padding: 0;
+    list-style: none;
 
     .item {
       display: grid;
       grid-template-columns: 180px 1fr 180px;
-      margin-bottom: 20px;
       max-height: 100px;
+      margin-bottom: 20px;
 
       &__image {
         display: flex;
@@ -26,6 +26,7 @@
         align-items: center;
         max-height: 100px;
         width: 100%;
+
         img {
           align-self: center;
           max-height: 100%;
@@ -44,6 +45,7 @@
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
+
           text-overflow: ellipsis;
           white-space: normal;
         }
@@ -80,13 +82,13 @@
     margin-bottom: 1rem;
 
     &__price {
-      font-size: 1.5rem;
       margin-bottom: 1rem;
+      font-size: 1.5rem;
     }
   }
   .button {
-    width: auto;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
+    width: auto;
   }
 }

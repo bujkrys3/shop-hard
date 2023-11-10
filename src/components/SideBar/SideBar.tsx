@@ -3,14 +3,15 @@ import classes from "./SideBar.module.scss";
 import { useProducts } from "../../context/ProductContext";
 import { Link } from "react-router-dom";
 import { Filter } from "../Filter/Filter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 export const SideBar = () => {
-  const { categories, setCategoryProductsHandler } = useProducts();
-
-  const [isCategoryVisible, setIsCategoryVisible] = useState(false);
+  const { categories, category, setCategoryProductsHandler } = useProducts();
+  const [isCategoryVisible, setIsCategoryVisible] = useState<boolean>();
 
   const toggleCategoryVisibility = () => {
-    setIsCategoryVisible(!isCategoryVisible);
+    setIsCategoryVisible!(!isCategoryVisible);
   };
 
   const scrollTop = () => {
@@ -24,12 +25,12 @@ export const SideBar = () => {
     const wrap = wrapRef.current;
     const wrapTwo = wrapTwoRef.current;
 
-    function positionWrapTwo() {
+    const positionWrapTwo = () => {
       if (wrap === null || wrapTwo === null) return;
       const wrapRect = wrap.getBoundingClientRect();
       wrapTwo.style.left = wrapRect.left + "px";
       wrapTwo.style.top = wrapRect.top + "px";
-    }
+    };
 
     positionWrapTwo();
 
@@ -43,27 +44,28 @@ export const SideBar = () => {
   return (
     <div ref={wrapRef}>
       <div ref={wrapTwoRef} className={classes.wrapper}>
+        <Link to={"/products"} className={classes.nav__title}>
+          All Products
+        </Link>
         <div className={classes.nav__title} onClick={toggleCategoryVisibility}>
-          Category
+          Category <FontAwesomeIcon icon={faChevronDown} />
         </div>
         <ul
           className={`${classes.list} ${
             isCategoryVisible ? classes.visible : ""
           }`}
         >
-          <Link to={"/products"} className={classes.list__item}>
-            All Products
-          </Link>
           {categories.map((item, index) => {
             return (
               <Link
                 to={`/category`}
                 onClick={() => {
                   setCategoryProductsHandler(item);
-                  toggleCategoryVisibility();
                   scrollTop();
                 }}
-                className={classes.list__item}
+                className={
+                  item === category ? classes.list__active : classes.list__item
+                }
                 key={index}
               >
                 {item}
