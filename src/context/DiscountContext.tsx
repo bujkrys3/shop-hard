@@ -22,11 +22,15 @@ export const DiscountProvider = ({ children }: { children: ReactNode }) => {
   const [discount, setDiscount] = useState(initialDiscountState);
 
   const addUsedDiscountCode = (discountCode: string) => {
-    setDiscount({ ...discount, usedDiscount: discountCode });
+    setDiscount((prev) => {
+      return { ...prev, usedDiscount: discountCode };
+    });
   };
 
   const removeDiscountCode = () => {
-    setDiscount({ ...discount, usedDiscount: "" });
+    setDiscount((prev) => {
+      return { ...prev, usedDiscount: "" };
+    });
   };
 
   return (

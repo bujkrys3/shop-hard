@@ -63,11 +63,12 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       const updatedCart = cart.items.map((item) =>
         item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
-      return setCart({ ...cart, items: updatedCart });
+      return setCart((prev) => {
+        return { ...prev, items: updatedCart };
+      });
     }
-    setCart({
-      ...cart,
-      items: [...cart.items, { ...product, quantity: 1 }],
+    setCart((prev) => {
+      return { ...prev, items: [...prev.items, { ...product, quantity: 1 }] };
     });
   };
 
@@ -75,7 +76,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const updatedCart = cart.items.map((item) =>
       item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
     );
-    setCart({ ...cart, items: updatedCart });
+    setCart((prev) => {
+      return { ...prev, items: updatedCart };
+    });
   };
 
   const reduceQuantity = (productId: number) => {
@@ -87,12 +90,16 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const updatedCart = cart.items.map((item) =>
       item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
     );
-    setCart({ ...cart, items: updatedCart });
+    setCart((prev) => {
+      return { ...prev, items: updatedCart };
+    });
   };
 
   const removeFromCart = (productId: number) => {
     const updatedCart = cart.items.filter((item) => item.id !== productId);
-    setCart({ ...cart, items: updatedCart });
+    setCart((prev) => {
+      return { ...prev, items: updatedCart };
+    });
   };
 
   const setQuantityOfProduct = (productId: number, quantity: number) => {
@@ -104,7 +111,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const updatedCart = cart.items.map((item) =>
       item.id === productId ? { ...item, quantity } : item
     );
-    setCart({ ...cart, items: updatedCart });
+    setCart((prev) => {
+      return { ...prev, items: updatedCart };
+    });
   };
 
   const addDiscountPriceInCart = (discountCode: string) => {
@@ -113,7 +122,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       const discountPrice = item.price - (item.price * discount) / 100;
       return { ...item, discountPrice };
     });
-    setCart({ ...cart, items: updatedCart });
+    setCart((prev) => {
+      return { ...prev, items: updatedCart };
+    });
   };
 
   const removeDiscountPriceInCart = () => {
@@ -121,7 +132,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       delete item.discountPrice;
       return { ...item };
     });
-    setCart({ ...cart, items: updatedCart });
+    setCart((prev) => {
+      return { ...prev, items: updatedCart };
+    });
   };
 
   const resetCart = () => {
