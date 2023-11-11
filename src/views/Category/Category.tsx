@@ -3,7 +3,7 @@ import classes from "./Category.module.scss";
 import { ProductWidget } from "../../components/ProductWidget/ProductWidget";
 import { useProducts } from "../../context/ProductContext";
 import { useFilter } from "../../context/FilterContext";
-import { NavBar } from "../../components/TopBar/TopBar";
+import { NavBar } from "../../components/NavBar/NavBar";
 import { SideBar } from "../../components/SideBar/SideBar";
 
 export const Category = () => {

@@ -7,6 +7,7 @@ interface ButtonProps {
   className?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  width?: string;
 }
 
 export const Button = ({
@@ -15,9 +16,11 @@ export const Button = ({
   className,
   type,
   disabled,
+  width,
 }: ButtonProps) => {
   return (
     <button
+      style={{width: width}}
       type={type ? type : "button"}
       className={`${classes.button} ${className}`}
       onClick={onClick}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavBar } from "../../components/TopBar/TopBar";
+import { NavBar } from "../../components/NavBar/NavBar";
 import classes from "./Cart.module.scss";
 import { useCart } from "../../context/CartContext";
 import { CartForm } from "../../components/CartProducts/CartProducts";

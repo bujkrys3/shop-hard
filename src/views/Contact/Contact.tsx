@@ -1,5 +1,5 @@
 import React from "react";
-import { NavBar } from "../../components/TopBar/TopBar";
+import { NavBar } from "../../components/NavBar/NavBar";
 import classes from "./Contact.module.scss";
 
 export const Contact = () => {

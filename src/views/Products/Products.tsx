@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useProducts } from "../../context/ProductContext";
 import { ProductWidget } from "../../components/ProductWidget/ProductWidget";
-import { NavBar } from "../../components/TopBar/TopBar";
+import { NavBar } from "../../components/NavBar/NavBar";
 import classes from "./Products.module.scss";
 import { SideBar } from "../../components/SideBar/SideBar";
 import { useFilter } from "../../context/FilterContext";

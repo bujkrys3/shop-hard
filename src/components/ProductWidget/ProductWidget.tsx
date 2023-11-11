@@ -47,6 +47,7 @@ export const ProductWidget = ({ product }: { product: Product }) => {
       <div className={classes.controls}>
         <p className={classes.controls__description}>{product.description}</p>
         <Button
+          width="130px"
           name={buttonName}
           onClick={() => {
             addToCart(product);

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
-import { NavBar } from "../../components/TopBar/TopBar";
+import { useParams, useNavigate } from "react-router-dom";
+import { NavBar } from "../../components/NavBar/NavBar";
 import classes from "./ProductPage.module.scss";
 import { useProducts } from "../../context/ProductContext";
 import { useCart } from "../../context/CartContext";
@@ -13,8 +13,13 @@ export const ProductPage = () => {
   const { addToCart } = useCart();
   const product = useMemo(() => products[Number(id) - 1], [products, id]);
   const [buttonName, setButtonName] = useState("Add to cart");
+  const navigate = useNavigate();
 
-  console.log(product);
+
+
+  const backTo = () => {
+    navigate(-1);
+  };
 
   const changeButtonName = () => {
     setButtonName("Added");
@@ -49,13 +54,17 @@ export const ProductPage = () => {
           <Rating rate={product.rating.rate} count={product.rating.count} />
         </div>
         <p className={classes.product__description}>{product.description}</p>
-        <Button
-          name={buttonName}
-          onClick={() => {
-            addToCart(product);
-            changeButtonName();
-          }}
-        />
+        <div className={classes.product__btnWrapper}>
+          <Button name="Back" onClick={backTo} />
+          <Button
+            width="130px"
+            name={buttonName}
+            onClick={() => {
+              addToCart(product);
+              changeButtonName();
+            }}
+          />
+        </div>
       </div>
     </div>
   );
