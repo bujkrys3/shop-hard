@@ -26,3 +26,11 @@ export interface ProductInCart {
   quantity: number;
   discountPrice?: number;
 }
+
+export interface FilterData {
+  price: {
+    from: string;
+    to: string;
+  };
+  sortBy: string;
+}

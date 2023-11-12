@@ -1,8 +1,9 @@
 import React, { ReactNode, useState, useContext, createContext } from "react";
+import { FilterData } from "../utils/types/productsInterface";
 import { Product } from "../utils/types/productsInterface";
 
 interface FilterContextInterface {
-  filterData: any;
+  filterData: FilterData;
   setFilterData: (data: any) => void;
   filteredProducts: (products: Product[]) => Product[];
   resetFilter: () => void;

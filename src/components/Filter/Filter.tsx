@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Filter.module.scss";
 import { useFilter } from "../../context/FilterContext";
+import { FilterData } from "../../utils/types/productsInterface";
 
 export const Filter = () => {
   const { filterData, setFilterData, resetFilter } = useFilter();
@@ -9,7 +10,7 @@ export const Filter = () => {
     name: string,
     value: { from: string; to: string } | string
   ) => {
-    setFilterData((prevState: any) => ({
+    setFilterData((prevState: FilterData) => ({
       ...prevState,
       [name]: value,
     }));
