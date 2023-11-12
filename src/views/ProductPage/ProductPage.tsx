@@ -11,11 +11,9 @@ export const ProductPage = () => {
   let { id } = useParams();
   const { products } = useProducts();
   const { addToCart } = useCart();
-  const product = useMemo(() => products[Number(id) - 1], [products, id]);
+  const product = products.find((p) => p.id === Number(id));
   const [buttonName, setButtonName] = useState("Add to cart");
   const navigate = useNavigate();
-
-
 
   const backTo = () => {
     navigate(-1);
@@ -29,20 +27,28 @@ export const ProductPage = () => {
   };
 
   const classWithDiscount = useMemo(() => {
-    return product.discountPrice
-      ? classes.product__discount
-      : classes.product__price;
-  }, [product.discountPrice]);
+    return product!.discountPrice
+      ? classes.product__priceWrapper__discount
+      : classes.product__priceWrapper__price;
+  }, [product]);
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   return (
     <div>
       <NavBar />
       <div className={classes.product} key={product.id}>
         <h4 className={classes.product__title}>{product.title}</h4>
-        <p className={classWithDiscount}>{product.price}$</p>
-        {product.discountPrice && (
-          <p className={classes.product__price}>{product.discountPrice}$</p>
-        )}
+        <div className={classes.product__priceWrapper}>
+          <p className={classWithDiscount}>{product.price.toFixed(2)}$</p>
+          {product.discountPrice && (
+            <p className={classes.product__priceWrapper__price}>
+              {product.discountPrice.toFixed(2)}$
+            </p>
+          )}
+        </div>
         <div className={classes.product__imgContainer}>
           <img
             className={classes.product__imgContainer__image}
