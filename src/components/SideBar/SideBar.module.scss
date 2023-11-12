@@ -1,6 +1,7 @@
 .wrapper {
   position: fixed;
   display: flex;
+  z-index: 1;
   align-items: center;
   flex-direction: column;
   width: 150px;
