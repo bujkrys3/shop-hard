@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Product } from "../../utils/types/productsInterface";
+import { Product } from "../../types/productsInterface";
 import classes from "./ProductWidget.module.scss";
 import { Button } from "../Button/Button";
 import { useCart } from "../../context/CartContext";
@@ -25,6 +25,13 @@ export const ProductWidget = ({ product }: { product: Product }) => {
 
   return (
     <div className={classes.wrapper} key={product.id}>
+      <Link to={`/products/${product.id}`} className={classes.imageContainer}>
+        <img
+          className={classes.imageContainer__image}
+          src={product.image}
+          alt={product.title}
+        />
+      </Link>
       <div className={classes.product}>
         <h4 className={classes.product__title}>{product.title}</h4>
         <div className={classes.priceWrapper}>
@@ -35,15 +42,9 @@ export const ProductWidget = ({ product }: { product: Product }) => {
             </p>
           )}
         </div>
+        <Rating rate={product.rating.rate} count={product.rating.count} />
       </div>
-      <Link to={`/products/${product.id}`} className={classes.imageContainer}>
-        <img
-          className={classes.imageContainer__image}
-          src={product.image}
-          alt={product.title}
-        />
-      </Link>
-      <Rating rate={product.rating.rate} count={product.rating.count} />
+
       <div className={classes.controls}>
         <p className={classes.controls__description}>{product.description}</p>
         <Button

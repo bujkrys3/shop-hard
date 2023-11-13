@@ -10,9 +10,12 @@ export const Category = () => {
   const { categoryProducts, category } = useProducts();
   const { filteredProducts } = useFilter();
 
-  const products = useMemo(() => {
+  const filteredProd = useMemo(() => {
     return filteredProducts(categoryProducts);
   }, [categoryProducts, filteredProducts]);
+
+  const images = categoryProducts.map((product) => product.image);
+  console.log(images)
 
   return (
     <div>
@@ -23,10 +26,8 @@ export const Category = () => {
           <h3 className={classes.title}>{category}</h3>
         </div>
         <div className={classes.products}>
-          {products.map((product, index) => (
-            <div className={classes.products__product} key={index}>
-              <ProductWidget product={product} />
-            </div>
+          {filteredProd.map((product, index) => (
+            <ProductWidget product={product} key={index} />
           ))}
         </div>
       </div>

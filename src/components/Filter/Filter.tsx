@@ -1,7 +1,8 @@
 import React from "react";
 import classes from "./Filter.module.scss";
 import { useFilter } from "../../context/FilterContext";
-import { FilterData } from "../../utils/types/productsInterface";
+import { FilterData } from "../../types/productsInterface";
+import { Button } from "../Button/Button";
 
 export const Filter = () => {
   const { filterData, setFilterData, resetFilter } = useFilter();
@@ -65,9 +66,11 @@ export const Filter = () => {
         <option value="highestRating">Highest Rating</option>
         <option value="lowestRating">Lowest Rating</option>
       </select>
-      <button className={classes.filter__button} onClick={resetFilter}>
-        Reset
-      </button>
+      <Button
+        className={classes.filter__button}
+        name="Reset"
+        onClick={resetFilter}
+      />
     </div>
   );
 };

@@ -2,6 +2,10 @@
   position: relative;
   margin-right: 50px;
   font-size: 40px;
+  transition: all 0.1s linear;
+  &:hover {
+    transform: scale(1.1);
+  }
   .cart_count {
     position: absolute;
     bottom: 0;

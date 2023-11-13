@@ -7,17 +7,41 @@ import { Contact } from "../views/Contact/Contact";
 import { Products } from "../views/Products/Products";
 import { Route, Routes, HashRouter } from "react-router-dom";
 
+const config = [
+  {
+    path: "/",
+    component: HomePage,
+  },
+  {
+    path: "/products",
+    component: Products,
+  },
+  {
+    path: "/products/:id",
+    component: ProductPage,
+  },
+  {
+    path: "/category",
+    component: Category,
+  },
+  {
+    path: "/cart",
+    component: Cart,
+  },
+  {
+    path: "/contact",
+    component: Contact,
+  },
+  { path: "*", component: "Not Found" },
+];
+
 export const Pages = () => {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<ProductPage />} />
-        <Route path="/category" element={<Category />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<h1>Not Found</h1>} />
+        {config.map((route, index) => (
+          <Route key={index} path={route.path} element={<route.component />} />
+        ))}
       </Routes>
     </HashRouter>
   );

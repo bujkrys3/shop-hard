@@ -24,9 +24,7 @@ export const Products = () => {
         </div>
         <div className={classes.products}>
           {filteredProd.map((product, index) => (
-            <div className={classes.products__product} key={index}>
-              <ProductWidget product={product} />
-            </div>
+            <ProductWidget product={product} key={index} />
           ))}
         </div>
       </div>

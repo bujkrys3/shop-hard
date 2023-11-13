@@ -1,9 +1,7 @@
 import React from "react";
 import classes from "./Discount.module.scss";
 import { useDiscount } from "../../context/DiscountContext";
-import { useCart } from "../../context/CartContext";
 import { useForm, FieldValues, FieldErrors } from "react-hook-form";
-import { useProducts } from "../../context/ProductContext";
 import { Button } from "../Button/Button";
 
 interface ErrorMessageProps {
@@ -21,8 +19,7 @@ const ErrorMessage = ({ errors, name }: ErrorMessageProps) => {
 
 export const Discount = () => {
   const { discount, addUsedDiscountCode, removeDiscountCode } = useDiscount();
-  const { addDiscountPriceInCart, removeDiscountPriceInCart } = useCart();
-  const { addDiscountPrice, removeDiscountPrice } = useProducts();
+
   const {
     register,
     reset,
@@ -44,8 +41,6 @@ export const Discount = () => {
       return;
     }
     addUsedDiscountCode(discountCode);
-    addDiscountPrice(discountCode);
-    addDiscountPriceInCart(discountCode);
     reset();
   };
 
@@ -80,8 +75,6 @@ export const Discount = () => {
               className={classes.discountInfo__button}
               name="X"
               onClick={() => {
-                removeDiscountPrice();
-                removeDiscountPriceInCart();
                 removeDiscountCode();
               }}
             />

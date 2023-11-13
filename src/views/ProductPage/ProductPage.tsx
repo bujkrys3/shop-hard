@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { NavBar } from "../../components/NavBar/NavBar";
 import classes from "./ProductPage.module.scss";
@@ -8,7 +8,7 @@ import { Button } from "../../components/Button/Button";
 import { Rating } from "../../components/Rating/Rating";
 
 export const ProductPage = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const { products } = useProducts();
   const { addToCart } = useCart();
   const product = products.find((p) => p.id === Number(id));
@@ -26,15 +26,12 @@ export const ProductPage = () => {
     }, 1000);
   };
 
-  const classWithDiscount = useMemo(() => {
-    return product!.discountPrice
-      ? classes.product__priceWrapper__discount
-      : classes.product__priceWrapper__price;
-  }, [product]);
-
   if (!product) {
     return <div>Product not found</div>;
   }
+  const classWithDiscount = product.discountPrice
+    ? classes.product__priceWrapper__discount
+    : classes.product__priceWrapper__price;
 
   return (
     <div>

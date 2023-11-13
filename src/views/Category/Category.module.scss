@@ -27,17 +27,11 @@
 }
 
 .products {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  justify-items: center;
   width: 100%;
   margin: 1rem auto 0;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  &__product {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  }
 }

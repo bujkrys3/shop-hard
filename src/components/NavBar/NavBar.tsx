@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { CartStatus } from "../CartStatus/CartStatus";
 import { useEffect, useRef, useState } from "react";
 import { useProducts } from "../../context/ProductContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 export const NavBar = () => {
-  const { categories, setCategoryProductsHandler } = useProducts();
+  const { categories, setCategory } = useProducts();
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisible = () => {
@@ -53,11 +55,22 @@ export const NavBar = () => {
             className={classes.nav__title}
             onClick={toggleVisible}
           >
-            Products
+            <p>Products</p>
+
+            <FontAwesomeIcon
+              className={
+                isVisible
+                  ? `${classes.nav__title__icon} ${classes.nav__title__icon__rotate}`
+                  : `${classes.nav__title__icon}`
+              }
+              icon={faCaretDown}
+            />
           </div>
           <div
             className={
-              isVisible ? `${classes.list} ${classes.visible}` : classes.list
+              isVisible
+                ? `${classes.list} ${classes.list__visible}`
+                : classes.list
             }
             ref={wrapRef}
           >
@@ -69,7 +82,7 @@ export const NavBar = () => {
                 <Link
                   to={`/category`}
                   onClick={() => {
-                    setCategoryProductsHandler(item);
+                    setCategory(item);
                     toggleVisible();
                   }}
                   className={classes.list__item}

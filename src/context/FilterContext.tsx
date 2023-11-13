@@ -1,6 +1,6 @@
 import React, { ReactNode, useState, useContext, createContext } from "react";
-import { FilterData } from "../utils/types/productsInterface";
-import { Product } from "../utils/types/productsInterface";
+import { FilterData } from "../types/productsInterface";
+import { Product } from "../types/productsInterface";
 
 interface FilterContextInterface {
   filterData: FilterData;
@@ -28,6 +28,7 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
 
   const filteredProducts = (products: Product[]) => {
     const { price, sortBy } = filterData;
+
     const filteredProducts = products.filter((product: any) => {
       if (price.from === "" && price.to === "") {
         return product;

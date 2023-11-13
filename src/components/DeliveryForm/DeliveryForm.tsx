@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import classes from "./DeliveryForm.module.scss";
 import { Button } from "../Button/Button";
 import { useCart } from "../../context/CartContext";
-import { useProducts } from "../../context/ProductContext";
 import { useDiscount } from "../../context/DiscountContext";
 
 interface FormData {
@@ -59,15 +58,13 @@ export const DeliveryForm: React.FC<DeliveryFormProps> = ({
   } = useForm<FormData>();
 
   const { cart, resetCart } = useCart();
-  const { removeDiscountPrice } = useProducts();
   const { removeDiscountCode } = useDiscount();
 
   const onSubmit = (data: FormData) => {
     console.log(data, cart);
-    resetCart();
-    removeDiscountPrice();
     removeDiscountCode();
     submitSuccessfulHandler();
+    resetCart();
     reset();
   };
 

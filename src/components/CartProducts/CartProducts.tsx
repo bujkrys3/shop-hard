@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../../context/CartContext";
 import classes from "./CartProducts.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
 
 export const CartForm = () => {
@@ -15,12 +15,15 @@ export const CartForm = () => {
       <ul className={classes.cartList}>
         {cart.items.map((product) => (
           <li key={product.id} className={classes.item}>
-            <Link
-              to={`/products/${product.id}`}
-              className={classes.item__image}
-            >
-              <img src={product.image} alt={product.title} />
-            </Link>
+            <div className={classes.item__image}>
+              <img
+                onClick={() => {
+                  navigate(`/products/${product.id}`);
+                }}
+                src={product.image}
+                alt={product.title}
+              />
+            </div>
             <div className={classes.item__details}>
               <p className={classes.item__details__title}>{product.title}</p>
             </div>

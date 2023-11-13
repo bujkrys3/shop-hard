@@ -24,12 +24,27 @@
     flex-wrap: wrap;
 
     &__title {
+      display: flex;
       margin: 0 10px;
       padding: 5px;
       font-size: 2rem;
       color: black;
       text-decoration: none;
       cursor: pointer;
+      transition: all 0.1s linear;
+
+      &__icon {
+        margin-left: 5px;
+        transition: all 0.1s linear;
+        color: black;
+
+        &__rotate {
+          transform: rotate(180deg);
+        }
+      }
+      &:hover {
+        transform: scale(1.1);
+      }
     }
 
     .list {
@@ -40,25 +55,31 @@
       background-color: #fff;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 
+      &__visible {
+        display: flex;
+        animation: fadeIn 0.5s;
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      }
+
       &__item {
+        width: 100%;
         padding: 5px;
         list-style-type: none;
         text-decoration: none;
         color: black;
         text-transform: uppercase;
-      }
-    }
-    .visible {
-      display: flex;
-      animation: fadeIn 0.5s;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
+        transition: all 0.1s linear;
+        &:hover {
+          background-color: #d7dde2;
+        }
       }
     }
   }

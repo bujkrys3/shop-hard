@@ -1,5 +1,5 @@
-import React, { ReactNode, useEffect, useState } from "react";
-import { Product, ProductInCart } from "../utils/types/productsInterface";
+import React, { ReactNode, useState } from "react";
+import { Product, ProductInCart } from "../types/productsInterface";
 
 export interface CartContextInterface {
   cart: {
@@ -13,9 +13,9 @@ export interface CartContextInterface {
   reduceQuantity: (productId: number) => void;
   setQuantityOfProduct: (productId: number, quantity: number) => void;
   increaseQuantity: (productId: number) => void;
-  addDiscountPriceInCart: (discountCode: string) => void;
-  removeDiscountPriceInCart: () => void;
   resetCart: () => void;
+  updatePriceAndQuantity: (cart: CartState) => CartState;
+  setCart: React.Dispatch<React.SetStateAction<CartState>>;
 }
 
 interface CartState {
@@ -35,27 +35,21 @@ const CartContext = React.createContext<CartContextInterface | null>(null);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<CartState>(initialState);
 
-  const updatePriceAndQuantity = () => {
-    setCart((prevCart) => {
-      const totalPrice = prevCart.items.reduce(
-        (acc, item) =>
-          acc +
-          (item.discountPrice !== undefined
-            ? item.discountPrice * item.quantity
-            : item.price * item.quantity),
-        0
-      );
-      const totalQuantity = prevCart.items.reduce(
-        (acc, item) => acc + item.quantity,
-        0
-      );
-      return { ...prevCart, totalPrice, totalQuantity };
-    });
+  const updatePriceAndQuantity = (cart: CartState) => {
+    const totalPrice = cart.items.reduce(
+      (acc, item) =>
+        acc +
+        (item.discountPrice !== undefined
+          ? item.discountPrice * item.quantity
+          : item.price * item.quantity),
+      0
+    );
+    const totalQuantity = cart.items.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
+    return { ...cart, totalPrice, totalQuantity };
   };
-
-  useEffect(() => {
-    updatePriceAndQuantity();
-  }, [cart.items]);
 
   const addToCart = (product: Product) => {
     const productInCart = cart.items.find((item) => item.id === product.id);
@@ -64,11 +58,14 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
       return setCart((prev) => {
-        return { ...prev, items: updatedCart };
+        return updatePriceAndQuantity({ ...prev, items: updatedCart });
       });
     }
     setCart((prev) => {
-      return { ...prev, items: [...prev.items, { ...product, quantity: 1 }] };
+      return updatePriceAndQuantity({
+        ...prev,
+        items: [...prev.items, { ...product, quantity: 1 }],
+      });
     });
   };
 
@@ -77,7 +74,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
     );
     setCart((prev) => {
-      return { ...prev, items: updatedCart };
+      return updatePriceAndQuantity({ ...prev, items: updatedCart });
     });
   };
 
@@ -91,14 +88,14 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
     );
     setCart((prev) => {
-      return { ...prev, items: updatedCart };
+      return updatePriceAndQuantity({ ...prev, items: updatedCart });
     });
   };
 
   const removeFromCart = (productId: number) => {
     const updatedCart = cart.items.filter((item) => item.id !== productId);
     setCart((prev) => {
-      return { ...prev, items: updatedCart };
+      return updatePriceAndQuantity({ ...prev, items: updatedCart });
     });
   };
 
@@ -112,47 +109,26 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       item.id === productId ? { ...item, quantity } : item
     );
     setCart((prev) => {
-      return { ...prev, items: updatedCart };
-    });
-  };
-
-  const addDiscountPriceInCart = (discountCode: string) => {
-    const discount = Number(discountCode.split("_")[1]);
-    const updatedCart = cart.items.map((item) => {
-      const discountPrice = item.price - (item.price * discount) / 100;
-      return { ...item, discountPrice };
-    });
-    setCart((prev) => {
-      return { ...prev, items: updatedCart };
-    });
-  };
-
-  const removeDiscountPriceInCart = () => {
-    const updatedCart = cart.items.map((item) => {
-      delete item.discountPrice;
-      return { ...item };
-    });
-    setCart((prev) => {
-      return { ...prev, items: updatedCart };
+      return updatePriceAndQuantity({ ...prev, items: updatedCart });
     });
   };
 
   const resetCart = () => {
-    setCart(initialState);
+    setCart({ items: [], totalPrice: 0, totalQuantity: 0 });
   };
 
   return (
     <CartContext.Provider
       value={{
         cart,
-        addDiscountPriceInCart,
         addToCart,
         removeFromCart,
         reduceQuantity,
         setQuantityOfProduct,
         increaseQuantity,
-        removeDiscountPriceInCart,
         resetCart,
+        updatePriceAndQuantity,
+        setCart,
       }}
     >
       {children}

@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import { Product } from "../utils/types/productsInterface";
+import { Product } from "../types/productsInterface";
 
 export interface ProductContextInterface {
   products: Product[];
@@ -7,9 +7,8 @@ export interface ProductContextInterface {
   categories: string[];
   category: string;
   categoryProducts: Product[];
-  setCategoryProductsHandler(category: string): void;
-  addDiscountPrice: (discountCode: string) => void;
-  removeDiscountPrice: () => void;
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
 const ProductContext = React.createContext<ProductContextInterface | null>(
@@ -18,35 +17,7 @@ const ProductContext = React.createContext<ProductContextInterface | null>(
 
 export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [favoriteProducts, setFavoriteProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
   const [category, setCategory] = useState<string>("");
-  const [categoryProducts, setCategoryProducts] = useState<Product[]>([]);
-
-  const setCategoryProductsHandler = (category: string) => {
-    const productsCategory = products.filter(
-      (product) => product.category === category
-    );
-    setCategoryProducts(productsCategory);
-    setCategory(category);
-  };
-
-  const addDiscountPrice = (discountCode: string) => {
-    const discount = Number(discountCode.split("_")[1]);
-    const updatedCart = products.map((item) => {
-      const discountPrice = item.price - (item.price * discount) / 100;
-      return { ...item, discountPrice };
-    });
-    setProducts(updatedCart);
-  };
-
-  const removeDiscountPrice = () => {
-    const updatedCart = products.map((item) => {
-      delete item.discountPrice;
-      return { ...item };
-    });
-    setProducts(updatedCart);
-  };
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -54,18 +25,20 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
       .then((data) => setProducts(data));
   }, []);
 
-  useEffect(() => {
-    const sortedProducts = [...products].sort(
-      (a, b) => b.rating.rate - a.rating.rate
-    );
-    setFavoriteProducts(sortedProducts.slice(0, 3));
-  }, [products]);
+  const favoriteProducts = [...products]
+    .sort((a, b) => b.rating.rate - a.rating.rate)
+    .slice(0, 3);
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products/categories")
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
+  const categories = products.reduce<string[]>((acc, product) => {
+    if (!acc.includes(product.category)) {
+      acc.push(product.category);
+    }
+    return acc;
   }, []);
+
+  const categoryProducts = products.filter(
+    (product) => product.category === category
+  );
 
   return (
     <ProductContext.Provider
@@ -75,9 +48,8 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         categories,
         category,
         categoryProducts,
-        setCategoryProductsHandler,
-        addDiscountPrice,
-        removeDiscountPrice,
+        setCategory,
+        setProducts,
       }}
     >
       {children}
