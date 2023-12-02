@@ -4,7 +4,7 @@ import classes from "./CartProducts.module.scss";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
 
-export const CartForm = () => {
+export const CartProducts = () => {
   const { cart, setQuantityOfProduct, increaseQuantity, reduceQuantity } =
     useCart();
 
@@ -15,14 +15,13 @@ export const CartForm = () => {
       <ul className={classes.cartList}>
         {cart.items.map((product) => (
           <li key={product.id} className={classes.item}>
-            <div className={classes.item__image}>
-              <img
-                onClick={() => {
-                  navigate(`/products/${product.id}`);
-                }}
-                src={product.image}
-                alt={product.title}
-              />
+            <div
+              className={classes.item__image}
+              onClick={() => {
+                navigate(`/products/${product.id}`);
+              }}
+            >
+              <img src={product.image} alt={product.title} />
             </div>
             <div className={classes.item__details}>
               <p className={classes.item__details__title}>{product.title}</p>
@@ -52,6 +51,7 @@ export const CartForm = () => {
               <input
                 className={classes.item__controls__input}
                 type="number"
+                readOnly
                 onChange={(e) => {
                   setQuantityOfProduct(product.id, Number(e.target.value));
                 }}

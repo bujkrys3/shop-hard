@@ -53,7 +53,7 @@ export const ProductPage = () => {
             alt={product.title}
           />
         </div>
-        <div>
+        <div className={classes.product__rating}>
           <Rating rate={product.rating.rate} count={product.rating.count} />
         </div>
         <p className={classes.product__description}>{product.description}</p>

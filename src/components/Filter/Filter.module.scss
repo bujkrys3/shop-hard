@@ -16,18 +16,21 @@
     width: 100%;
     input {
       width: 60px;
+      color: #111111;
+      background-color: #ffffff;
+      border-radius: 5px;
     }
   }
 
   &__select {
     width: 130px;
+    color: #111111;
+    background-color: #ffffff;
+    border-radius: 5px;
   }
 
   &__button {
     margin-top: 1rem;
     width: 100%;
-    &:hover {
-      transform: translateY(-2px);
-    }
   }
 }

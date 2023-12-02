@@ -3,16 +3,19 @@
   margin-right: 50px;
   font-size: 40px;
   transition: all 0.1s linear;
+  color: #111111;
+
   &:hover {
     transform: scale(1.1);
   }
+
   .cart_count {
     position: absolute;
     bottom: 0;
     right: 0;
     padding: 2px 6px;
     font-size: 14px;
-    color: white;
+    color: rgb(241, 227, 227);
     background-color: red;
     border-radius: 50%;
   }

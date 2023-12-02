@@ -26,8 +26,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const favoriteProducts = [...products]
-    .sort((a, b) => b.rating.rate - a.rating.rate)
-    .slice(0, 3);
+    .sort((a, b) => b.rating.rate - a.rating.rate);
 
   const categories = products.reduce<string[]>((acc, product) => {
     if (!acc.includes(product.category)) {

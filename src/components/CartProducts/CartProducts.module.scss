@@ -6,6 +6,7 @@
   width: 100%;
   margin: 0 auto;
   padding: 2rem;
+  background-color: #ebebeb;
 
   .cartList {
     display: flex;
@@ -25,24 +26,27 @@
         align-items: center;
         max-height: 100px;
         max-width: 100%;
+        background-color: white;
+        border-radius: 10px;
+        transition: all 0.1s linear;
+
+        &:hover {
+          transform: scale(1.1);
+          cursor: pointer;
+        }
 
         img {
           align-self: center;
           max-height: 100%;
           max-width: 100%;
-          transition: all 0.1s linear;
-          &:hover {
-            transform: scale(1.1);
-            cursor: pointer;
-          }
         }
       }
 
       &__details {
         display: flex;
         align-items: center;
-        margin: 0 1rem;
-        margin-right: 2rem;
+        max-width: 400px;
+        margin: 0 1rem 0 2rem;
 
         &__title {
           display: -webkit-box;
@@ -62,7 +66,7 @@
 
         &__priceWrap {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           align-items: flex-end;
         }
 
@@ -76,10 +80,17 @@
 
         &__input {
           max-width: 40px;
+          color: #111111;
+          background-color: #ffffff;
+          border-radius: 5px;
         }
 
         &__button {
           margin-left: 5px;
+          color: rgb(241, 227, 227);
+          background-color: black;
+          border-radius: 5px;
+          cursor: pointer;
         }
       }
     }

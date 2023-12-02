@@ -55,7 +55,8 @@ export const DeliveryForm: React.FC<DeliveryFormProps> = ({
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+  });
 
   const { cart, resetCart } = useCart();
   const { removeDiscountCode } = useDiscount();

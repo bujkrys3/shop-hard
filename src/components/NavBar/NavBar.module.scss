@@ -6,7 +6,7 @@
   left: 0;
   height: 100px;
   width: 100vw;
-  background-color: #fff;
+  background-color: #ebebeb;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
@@ -28,7 +28,7 @@
       margin: 0 10px;
       padding: 5px;
       font-size: 2rem;
-      color: black;
+      color: #111111;
       text-decoration: none;
       cursor: pointer;
       transition: all 0.1s linear;
@@ -36,7 +36,7 @@
       &__icon {
         margin-left: 5px;
         transition: all 0.1s linear;
-        color: black;
+        color: #111111;
 
         &__rotate {
           transform: rotate(180deg);
@@ -52,7 +52,7 @@
       position: fixed;
       align-items: flex-start;
       flex-direction: column;
-      background-color: #fff;
+      background-color: #ebebeb;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 
       &__visible {
@@ -74,11 +74,11 @@
         padding: 5px;
         list-style-type: none;
         text-decoration: none;
-        color: black;
+        color: #111111;
         text-transform: uppercase;
         transition: all 0.1s linear;
         &:hover {
-          background-color: #d7dde2;
+          background-color: #cfd8e0;
         }
       }
     }

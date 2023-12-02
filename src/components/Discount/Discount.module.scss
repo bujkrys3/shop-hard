@@ -26,7 +26,7 @@
       margin-top: 0.5rem;
       font-size: 1.2rem;
       font-weight: bold;
-      color: red;
+      color: rgb(179, 28, 103);
     }
 
     &__button {
@@ -47,6 +47,9 @@
     }
     &__input {
       margin-right: 10px;
+      color: #111111;
+      background-color: #ffffff;
+      border-radius: 5px;
     }
   }
 }

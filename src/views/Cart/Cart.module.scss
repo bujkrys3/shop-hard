@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  min-height: calc(100vh - 120px - 1rem);
+  min-height: calc(100vh - 150px - 2rem);
   margin: 120px auto 1rem;
   padding-top: 50px;
-  background-color: #fff;
+  background-color: #ebebeb;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 10px;
 
   &__success {
     display: block;
@@ -21,7 +22,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  min-height: calc(100vh - 120px - 1rem);
+  min-height: calc(100vh - 150px - 2rem);
   gap: 1rem;
   margin: 120px auto 1rem;
 
@@ -29,8 +30,9 @@
     display: flex;
     flex-direction: column;
     width: 65%;
-    background-color: #fff;
+    background-color: #ebebeb;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 10px;
   }
 
   .sideWrapper {
@@ -40,13 +42,15 @@
     min-width: 500px;
 
     &__discount {
-      background-color: #fff;
+      background-color: #ebebeb;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+      border-radius: 10px;
     }
     &__delivery {
       margin: 1rem 0 0;
-      background-color: #fff;
+      background-color: #ebebeb;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+      border-radius: 10px;
     }
   }
 }

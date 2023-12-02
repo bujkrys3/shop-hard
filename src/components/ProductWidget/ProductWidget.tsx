@@ -3,12 +3,14 @@ import { Product } from "../../types/productsInterface";
 import classes from "./ProductWidget.module.scss";
 import { Button } from "../Button/Button";
 import { useCart } from "../../context/CartContext";
-import { Link } from "react-router-dom";
 import { Rating } from "../Rating/Rating";
+import { useNavigate } from "react-router-dom";
 
 export const ProductWidget = ({ product }: { product: Product }) => {
   const { addToCart } = useCart();
   const [buttonName, setButtonName] = useState("Add to cart");
+
+  const navigate = useNavigate();
 
   const changeButtonName = () => {
     setButtonName("Added");
@@ -25,13 +27,18 @@ export const ProductWidget = ({ product }: { product: Product }) => {
 
   return (
     <div className={classes.wrapper} key={product.id}>
-      <Link to={`/products/${product.id}`} className={classes.imageContainer}>
+      <div
+        className={classes.imageContainer}
+        onClick={() => {
+          navigate(`/products/${product.id}`);
+        }}
+      >
         <img
           className={classes.imageContainer__image}
           src={product.image}
           alt={product.title}
         />
-      </Link>
+      </div>
       <div className={classes.product}>
         <h4 className={classes.product__title}>{product.title}</h4>
         <div className={classes.priceWrapper}>

@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 export const CartStatus = () => {
   const { cart } = useCart();
 
-
-
   return (
     <Link to={"/cart"}>
       <div className={classes.cart_icon}>
