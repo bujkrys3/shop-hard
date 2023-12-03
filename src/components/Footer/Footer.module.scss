@@ -1,6 +1,7 @@
 .footer {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   height: 30px;
   background-color: #ebebeb;
@@ -8,4 +9,15 @@
   box-shadow: 0 2px 8px rgba(34, 10, 10, 0.26);
   border-radius: 10px;
   margin-bottom: 1rem;
+
+  &__icon {
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    color: #000;
+    cursor: pointer;
+
+    &:hover {
+      color: #777777;
+    }
+  }
 }
